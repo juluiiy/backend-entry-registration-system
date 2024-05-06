@@ -1,2 +1,9 @@
-package org.backendentryregistrationsystem.DTO;public class LoginDTO {
+package org.backendentryregistrationsystem.DTO;
+
+import lombok.Data;
+
+@Data
+public class LoginDTO {
+    private String email;
+    private String password;
 }

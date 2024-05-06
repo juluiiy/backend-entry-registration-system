@@ -1,2 +1,13 @@
-package org.backendentryregistrationsystem.DTO;public class AuthResponseDTO {
+package org.backendentryregistrationsystem.DTO;
+
+import lombok.Data;
+
+@Data
+public class AuthResponseDTO {
+    private String accessToken;
+    private String tokenType = "Bearer ";
+
+    public AuthResponseDTO(String accessToken) {
+        this.accessToken = accessToken;
+    }
 }
