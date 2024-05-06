@@ -1,6 +1,6 @@
 package org.backendentryregistrationsystem.repository;
 
-import org.backendentryregistrationsystem.model.user.UserEntity;
+import org.backendentryregistrationsystem.model.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

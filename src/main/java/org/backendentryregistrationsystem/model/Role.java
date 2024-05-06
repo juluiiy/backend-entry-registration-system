@@ -1,4 +1,4 @@
-package org.backendentryregistrationsystem.model.user;
+package org.backendentryregistrationsystem.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;

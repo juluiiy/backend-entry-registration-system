@@ -1,7 +1,7 @@
 package org.backendentryregistrationsystem.security;
 
-import org.backendentryregistrationsystem.model.user.Role;
-import org.backendentryregistrationsystem.model.user.UserEntity;
+import org.backendentryregistrationsystem.model.Role;
+import org.backendentryregistrationsystem.model.UserEntity;
 import org.backendentryregistrationsystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
