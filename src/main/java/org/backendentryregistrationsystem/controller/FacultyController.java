@@ -4,6 +4,7 @@ import org.backendentryregistrationsystem.model.Faculty;
 import org.backendentryregistrationsystem.service.FacultyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,7 +28,7 @@ public class FacultyController {
         return facultyService.findAllFaculties();
     }
     @GetMapping("/{id}")
-    public Optional<Faculty> findFacultyById(UUID id) {
+    public Optional<Faculty> findFacultyById(@PathVariable UUID id) {
         return facultyService.findFacultyById(id);
     }
 }
