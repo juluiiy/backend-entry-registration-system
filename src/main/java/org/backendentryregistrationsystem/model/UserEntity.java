@@ -34,6 +34,9 @@ public class UserEntity {
     private List<NmtResult> nmtResults;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_applications",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "application_id", referencedColumnName = "application_id"))
     private List<Application> applications;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

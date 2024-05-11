@@ -8,5 +8,5 @@ import java.util.UUID;
 
 @Repository
 public interface Specialtyrepository extends JpaRepository<Specialty, UUID> {
-    Specialty findSpecialtyByNameAndEducationForm(String specialtyName, String educationForm);
+
 }

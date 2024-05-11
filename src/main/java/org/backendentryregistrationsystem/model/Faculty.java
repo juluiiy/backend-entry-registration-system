@@ -26,6 +26,6 @@ public class Faculty {
     @Column(name = "dean")
     private String dean;
 
-    @OneToMany(mappedBy = "faculty", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Specialty> specialties = new ArrayList<>();
 }

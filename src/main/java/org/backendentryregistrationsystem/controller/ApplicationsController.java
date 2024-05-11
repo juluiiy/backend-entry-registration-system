@@ -1,10 +1,11 @@
 package org.backendentryregistrationsystem.controller;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.backendentryregistrationsystem.DTO.ApplicationDTO;
 import org.backendentryregistrationsystem.model.UserEntity;
 import org.backendentryregistrationsystem.service.ApplicationService;
 import org.backendentryregistrationsystem.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,6 +17,8 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/applications")
 public class ApplicationsController {
+
+    private static final Logger logger = LoggerFactory.getLogger(ApplicationsController.class);
 
     private UserService userService;
     private ApplicationService applicationService;
@@ -29,6 +32,7 @@ public class ApplicationsController {
     @PostMapping("/users/{userId}")
     public ResponseEntity<?> createApplication(@PathVariable UUID userId,
                                                @RequestBody ApplicationDTO applicationDTO) {
+        logger.info("Received application: {}", applicationDTO);
         Optional<UserEntity> userOptional = userService.getUser(userId);
         if (userOptional.isPresent()) {
             UserEntity user = userOptional.get();
