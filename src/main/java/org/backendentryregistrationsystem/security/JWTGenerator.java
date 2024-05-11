@@ -3,30 +3,42 @@ package org.backendentryregistrationsystem.security;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.backendentryregistrationsystem.model.UserEntity;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @Component()
 public class JWTGenerator {
     @Value("${JWT_SECRET}")
     String secret_key;
 
-    public String generateToken(Authentication authentication) {
-        String username = authentication.getName();
-        Date currentDate = new Date();
-        Date expirationDate = new Date(currentDate.getTime() + 864000000);
+    @Value("${JWT_EXPIRATION}")
+    int expiration;
 
-        String token = Jwts.builder()
-                .setSubject(username)
-                .setIssuedAt(currentDate)
+    public String createToken(Map<String, Object> claims, String email) {
+
+        Date now = new Date();
+        Date expirationDate = new Date(now.getTime() + expiration);
+
+        return Jwts.builder()
+                .setClaims(claims)
+                .setSubject(email)
+                .setIssuedAt(now)
                 .setExpiration(expirationDate)
                 .signWith(SignatureAlgorithm.HS512, secret_key)
                 .compact();
-        return token;
+    }
+
+    public String generateToken(UserEntity userDetails) {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("UserId", userDetails.getId());
+        return createToken(claims, userDetails.getEmail());
     }
 
     public String getUserNameFromJWT(String token) {
