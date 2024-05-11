@@ -26,7 +26,7 @@ public class Application {
     @Column(name = "user_id")
     private UUID userId;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     @JoinTable(name = "specialty_applications",
             joinColumns = @JoinColumn(name = "application_id", referencedColumnName = "application_id"),
             inverseJoinColumns = @JoinColumn(name = "specialty_id", referencedColumnName = "specialty_id"))

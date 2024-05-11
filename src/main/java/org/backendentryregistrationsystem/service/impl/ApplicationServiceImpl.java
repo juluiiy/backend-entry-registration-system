@@ -69,7 +69,11 @@ public class ApplicationServiceImpl implements ApplicationService {
             Application application = applicationOptional.get();
 
             Optional<UserEntity> userOptional = userRepository.findById(application.getUserId());
-            userOptional.ifPresent(user -> user.getApplications().remove(application));
+            if (userOptional.isPresent()) {
+                UserEntity user = userOptional.get();
+                user.getApplications().remove(application);
+                userRepository.save(user);
+            }
 
             applicationRepository.deleteById(applicationId);
         }
